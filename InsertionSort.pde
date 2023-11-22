@@ -17,6 +17,11 @@ class InsertionSort implements Algorithm {
   int nextIndexToCompare() {
     return secondary.index - 1;
   }
+
+  void moveToNextElement() {
+      primary.index++;
+      secondary.index = primary.index;
+  }
   
   void iterate() {
     if (primary.index >= v.getArraySize()) {
@@ -31,8 +36,7 @@ class InsertionSort implements Algorithm {
       v.swapElements(secondary, aux);
       secondary.index = aux.index;
     } else {
-      primary.index++;
-      secondary.index = primary.index;
+      moveToNextElement();
     }
     
   }
