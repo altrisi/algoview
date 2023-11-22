@@ -13,6 +13,10 @@ class InsertionSort implements Algorithm {
     v.addPointer(secondary);
     v.addPointer(aux);
   }
+
+  int nextIndexToCompare() {
+    return secondary.index - 1;
+  }
   
   void iterate() {
     if (primary.index >= v.getArraySize()) {
@@ -20,12 +24,12 @@ class InsertionSort implements Algorithm {
       return;
     }
     
-    aux.index = secondary.index - 1;
+    aux.index = nextIndexToCompare();
    
     if (aux.index >= 0 && v.getAtPointer(secondary) < v.getAtPointer(aux)) {
       osci.freq(v.getAtPointer(aux));
       v.swapElements(secondary, aux);
-      secondary.index--;
+      secondary.index = aux.index;
     } else {
       primary.index++;
       secondary.index = primary.index;
